@@ -11,7 +11,7 @@
         </p>
         <div class="d-grid gap-3 col-6 mx-auto mt-4">
             <a href="{{ route('cases.create') }}" class="btn btn-outline-light btn-lg">File New Case</a>
-            <a href="#" class="btn btn-outline-success btn-lg">View Cases</a>
+            <a href="{{ route('cases.index') }}" class="btn btn-outline-success btn-lg">View Cases</a>
             <a href="#" class="btn btn-outline-info btn-lg">AI Legal Guidance</a>
         </div>
     </div>

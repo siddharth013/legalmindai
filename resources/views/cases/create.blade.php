@@ -6,6 +6,20 @@
 
 <div class="container mt-4">
     <h2 class="mb-4">Add New Legal Case</h2>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+@if (session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+@endif
+
 
     <form method="POST" action="{{ route('cases.store') }}" enctype="multipart/form-data">
         @csrf
@@ -51,8 +65,15 @@
 
         <div class="mb-3">
             <label for="case_description" class="form-label">Case Description *</label>
-            <textarea name="case_description" class="form-control wysiwyg" id="case_description" rows="6" required></textarea>
-        </div>
+            <textarea 
+    name="case_description" 
+    class="form-control" 
+    id="case_description" 
+    rows="6" 
+    required
+></textarea>
+
+</div>
 
         <div class="mb-3">
             <label for="date_filed" class="form-label">Date Case Filed *</label>
@@ -162,7 +183,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-build-classic@34.1.0/build/ckeditor.js"></script>
 <script>
     // Initialize CKEditor for WYSIWYG case description
-    ClassicEditor.create(document.querySelector('.wysiwyg')).catch(error => { console.error(error); });
+    //ClassicEditor.create(document.querySelector('.wysiwyg')).catch(error => { console.error(error); });
 
     // Dynamic Next Action Date Fields
     document.getElementById('add-action-btn').addEventListener('click', function() {

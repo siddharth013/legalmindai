@@ -7,6 +7,7 @@ use App\Models\NextAction;
 use App\Models\OpposingParty;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class CaseController extends Controller
 {
@@ -42,7 +43,7 @@ class CaseController extends Controller
             'opposing_parties.*.email' => 'nullable|email|max:255',
         ]);
 
-        DB::transaction(function() use ($validated) {
+        DB::transaction(function () use ($validated) {
             $case = CaseModel::create($validated);
 
             if (!empty($validated['next_actions'])) {
@@ -58,13 +59,27 @@ class CaseController extends Controller
 
             if (!empty($validated['opposing_parties'])) {
                 foreach ($validated['opposing_parties'] as $party) {
-                    if (!empty(array_filter($party))) { // if any field is filled
+                    if (!empty(array_filter($party))) {
                         OpposingParty::create(array_merge(['case_id' => $case->id], $party));
                     }
                 }
             }
         });
 
+        Log::info('Submitted case form data:', $request->all());
+
         return redirect()->route('cases.create')->with('success', 'Case added successfully!');
+    }
+
+    public function index()
+    {
+        $cases = CaseModel::all();
+        return view('cases.index', compact('cases'));
+    }
+
+    public function show($id)
+    {
+        $case = CaseModel::findOrFail($id);
+        return view('cases.show', compact('case'));
     }
 }

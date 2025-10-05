@@ -1,12 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CaseController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/cases', [CaseController::class, 'index'])->name('cases.index');
+Route::get('/cases/create', [CaseController::class, 'create'])->name('cases.create');
+Route::post('/cases', [CaseController::class, 'store'])->name('cases.store');
+Route::get('/cases/{id}', [CaseController::class, 'show'])->name('cases.show');
 
-Route::get('/cases/create', [App\Http\Controllers\CaseController::class, 'create'])->name('cases.create');
-Route::post('/cases', [App\Http\Controllers\CaseController::class, 'store'])->name('cases.store');
+Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
