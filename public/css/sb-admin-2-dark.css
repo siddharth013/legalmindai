@@ -1,0 +1,51 @@
+/* Background dark */
+body, .bg-white, .card, .sidebar, .topbar {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+}
+
+/* Sidebar background & text */
+.sidebar, .sidebar-dark {
+    background-color: #1f1f1f !important;
+    color: #e0e0e0 !important;
+}
+
+/* Sidebar links */
+.sidebar .nav-item .nav-link {
+    color: #bfbfbf !important;
+}
+.sidebar .nav-item .nav-link:hover, .sidebar .nav-item.active .nav-link {
+    color: #ffffff !important;
+    background-color: #333333 !important;
+}
+
+/* Navbar background & text */
+.topbar {
+    background-color: #1f1f1f !important;
+    color: #e0e0e0 !important;
+}
+
+/* Card background in dashboard */
+.card {
+    background-color: #1e1e1e !important;
+    border-color: #333 !important;
+    color: #e0e0e0 !important;
+}
+
+/* Text colors */
+.text-gray-800 {
+    color: #e0e0e0 !important;
+}
+.text-primary {
+    color: #4e73df !important; /* You can adjust or replace with a lighter shade */
+}
+
+/* Scroll to top button */
+.scroll-to-top {
+    background-color: #4e73df !important;
+}
+
+/* Modify charts colors */
+.chart-area, .chart-pie {
+    background-color: transparent !important;
+}
